@@ -3,8 +3,10 @@ export default function Sidebar() {
   const patchNotesData = [ { version: "v1.2", note: "Deployed portfolio." }, { version: "v1.1", note: "Completed Node.js course." } ];
 
   return (
-    // --- THE FIX: We added `right-8` to create the gap from the edge ---
-    <div className="fixed right-8 top-1/2 -translate-y-1/2 h-auto w-72 bg-black/50 backdrop-blur-md border border-gray-800 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.6)] z-20">
+    // --- THE FIX: We added `hidden lg:block` here ---
+    // This tells the sidebar itself to be hidden by default
+    // and only show up on 'large' (lg) screens.
+    <div className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 h-auto w-72 bg-black/50 backdrop-blur-md border border-gray-800 rounded-lg overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.6)] z-20">
       <div>
         <div className="border-b border-gray-700/50 py-3 text-center">
           <h3 className="text-gray-300 font-valorant text-sm tracking-widest">FEATURED</h3>
