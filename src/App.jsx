@@ -16,10 +16,7 @@ export default function App() {
 
   const projectData = [ { title: "Art Ecom ", description: "Perosnal Art selling Website (Under Devolopment)", imageUrl: "/image_2025-10-30_21-43-31.png", tech: ["HTML-CSS", "JS", "Three.JS", "GSAP"], liveUrl: "#", githubUrl: "#" }, { title: "ChatWith PDF", description: "Chat with PDF using Contextual AI ----still in Local Host :)", imageUrl: "pdf.png", tech: ["Python", "Flask", "JavaScript","Google Gemini w-RAG"], liveUrl: "#", githubUrl: "#" } ];
   const skillData = [ { skill: "HTML5 & CS3", level: "90%" }, { skill: "JavaScript", level: "70%" }, { skill: "Python", level: "80%" },{ skill: "Flirting", level: "0.1%" }, ];
-  // ... (skillData array is above this)
-
-  // --- 1. Define aboutContent as JSX ---
-  // We use a div with spacing for paragraphs, and <span> for highlights.
+  
   const aboutContent = (
     <div className="flex flex-col space-y-4 text-lg md:text-xl">
       <p>
@@ -93,10 +90,7 @@ const sections = {
           </div>
         </nav>
         
-        {/* --- The Definitive Layout Fix ---
-            This main content area uses margin-left to create space for the nav.
-            It will have consistent width whether the right sidebar is visible or not.
-        */}
+        {}
         <main className="w-full min-h-screen flex items-center justify-center p-6 md:p-12 pt-28 ml-auto md:ml-[33.33%]">
           <div className="w-full max-w-4xl">
             <AnimatePresence mode="wait">
