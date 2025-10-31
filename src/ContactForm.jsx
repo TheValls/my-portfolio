@@ -1,31 +1,28 @@
 import { useState } from 'react';
 
 export default function ContactForm() {
-  
-  // --- PASTE YOUR NEW KEY FROM WEB3FORMS HERE ---
-  const ACCESS_KEY = "ae4b0387-7ab2-4f2b-9ed7-300a776cfba9";
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
+
+  const FORM_ENDPOINT = import.meta.env.VITE_FORM_SUBMIT_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmissionStatus(null);
 
-    // This is the data structure Web3Forms expects (JSON)
     const formData = {
       name: name,
       email: email,
       message: message,
-      access_key: ACCESS_KEY,
     };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,8 +32,9 @@ export default function ContactForm() {
       });
 
       const result = await response.json();
-
-      if (result.success) {
+      
+      // FormSubmit returns success as a string "true"
+      if (result.success === "true") {
         setSubmissionStatus('success');
         setName('');
         setEmail('');
@@ -55,11 +53,13 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* We add a 'name' attribute to each field. This is what FormSubmit uses. */}
       <div>
         <label htmlFor="name" className="block text-gray-400 mb-1">Name</label>
         <input 
           type="text" 
           id="name"
+          name="name" // <-- Add this
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
@@ -71,6 +71,7 @@ export default function ContactForm() {
         <input 
           type="email" 
           id="email"
+          name="email" // <-- Add this
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -81,6 +82,7 @@ export default function ContactForm() {
         <label htmlFor="message" className="block text-gray-400 mb-1">Message</label>
         <textarea 
           id="message"
+          name="message" // <-- Add this
           rows="4"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
