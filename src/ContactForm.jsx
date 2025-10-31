@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
 export default function ContactForm() {
-  // LEARNING POINT: We use state to keep track of what the user types in each input.
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In a real app, you would handle the form submission here
-    // (e.g., send the data to an API endpoint).
+    
     alert(`Thank you, ${name}! Your message has been sent.`);
     setName('');
     setEmail('');
