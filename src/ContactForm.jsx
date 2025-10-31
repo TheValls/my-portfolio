@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 export default function ContactForm() {
   
-  // --- You were missing these lines ---
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submissionStatus, setSubmissionStatus] = useState(null); // 'success', 'error', or null
-  // ---
+  // --- PASTE YOUR NEW KEY FROM WEB3FORMS HERE ---
+  const ACCESS_KEY = "ae4b0387-7ab2-4f2b-9ed7-300a776cfba9";
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(null);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -16,29 +16,33 @@ export default function ContactForm() {
     setIsSubmitting(true);
     setSubmissionStatus(null);
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("message", message);
+    // This is the data structure Web3Forms expects (JSON)
+    const formData = {
+      name: name,
+      email: email,
+      message: message,
+      access_key: ACCESS_KEY,
+    };
 
     try {
-      const response = await fetch("https://form.taxi/s/rev5gdh4", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
 
-      if (result.status === "success") {
+      if (result.success) {
         setSubmissionStatus('success');
         setName('');
         setEmail('');
         setMessage('');
       } else {
-        console.error("Form submission error:", result.data);
+        console.error("Form submission error:", result.message);
         setSubmissionStatus('error');
       }
     } catch (error) {
@@ -86,14 +90,12 @@ export default function ContactForm() {
       </div>
       <button 
         type="submit"
-        // --- You were missing this logic ---
         disabled={isSubmitting}
         className="font-valorant bg-valorant-red text-white text-lg px-6 py-2 rounded-md hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "SENDING..." : "SEND MESSAGE"}
       </button>
 
-      {/* --- You were missing these messages --- */}
       {submissionStatus === 'success' && (
         <p className="mt-4 text-green-400">Message sent successfully! Thank you.</p>
       )}
