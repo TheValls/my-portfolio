@@ -15,7 +15,7 @@ export default function App() {
   const navItems = ['home', 'projects', 'skills', 'about', 'contact'];
 
   const projectData = [ { title: "Art Ecom ", description: "Perosnal Art selling Website (Under Devolopment)", imageUrl: "/image_2025-10-30_21-43-31.png", tech: ["HTML-CSS", "JS", "Three.JS", "GSAP"], liveUrl: "#", githubUrl: "#" }, { title: "ChatWith PDF", description: "Chat with PDF using Contextual AI ----still in Local Host :)", imageUrl: "pdf.png", tech: ["Python", "Flask", "JavaScript","Google Gemini w-RAG"], liveUrl: "#", githubUrl: "#" } ];
-  const skillData = [ { skill: "HTML5 & CS3", level: "90%" }, { skill: "JavaScript", level: "70%" }, { skill: "Python", level: "80%" },{ skill: "Flirting", level: "0.1%" }, ];
+  const skillData = [ { skill: "HTML5 & CSS3", level: "90%" }, { skill: "JavaScript", level: "70%" }, { skill: "Python", level: "80%" },{ skill: "Flirting", level: "10%" },{ skill: "Java", level: "70%" } ];
   
   const aboutContent = (
     <div className="flex flex-col space-y-4 text-lg md:text-xl">
